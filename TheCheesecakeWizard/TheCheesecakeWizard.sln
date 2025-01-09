@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheCheesecakeWizard.Server", "TheCheesecakeWizard.Server\TheCheesecakeWizard.Server.csproj", "{8824F790-32D0-4D93-B71E-7652AFD42E29}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "thecheesecakewizard.client", "thecheesecakewizard.client\thecheesecakewizard.client.esproj", "{885731BB-23E1-4D8C-9B76-4591C949930E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8824F790-32D0-4D93-B71E-7652AFD42E29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8824F790-32D0-4D93-B71E-7652AFD42E29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8824F790-32D0-4D93-B71E-7652AFD42E29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8824F790-32D0-4D93-B71E-7652AFD42E29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{885731BB-23E1-4D8C-9B76-4591C949930E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{885731BB-23E1-4D8C-9B76-4591C949930E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{885731BB-23E1-4D8C-9B76-4591C949930E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{885731BB-23E1-4D8C-9B76-4591C949930E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{885731BB-23E1-4D8C-9B76-4591C949930E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{885731BB-23E1-4D8C-9B76-4591C949930E}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
