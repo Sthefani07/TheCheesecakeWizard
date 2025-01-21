@@ -1,4 +1,4 @@
-namespace TheCheesecakeWizard.Server
+namespace TheCheesecakeWizard.API
 {
     public class WeatherForecast
     {

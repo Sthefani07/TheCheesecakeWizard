@@ -1,0 +1,6 @@
+@TheCheesecakeWizard.API_HostAddress = http://localhost:5022
+
+GET {{TheCheesecakeWizard.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
