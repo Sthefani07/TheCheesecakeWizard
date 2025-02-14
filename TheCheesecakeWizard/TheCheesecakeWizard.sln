@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheCheesecakeWizard.API", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheCheesecakeWizard.DAL", "TheCheesecakeWizard.DAL\TheCheesecakeWizard.DAL.csproj", "{904DAA50-2322-42FC-9377-BC2749C44A58}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheCheesecakeWizard.BL", "TheCheesecakeWizard.BL\TheCheesecakeWizard.BL.csproj", "{C667A56F-162F-4DC7-B4A0-7CFF349C63ED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{904DAA50-2322-42FC-9377-BC2749C44A58}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{904DAA50-2322-42FC-9377-BC2749C44A58}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{904DAA50-2322-42FC-9377-BC2749C44A58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C667A56F-162F-4DC7-B4A0-7CFF349C63ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C667A56F-162F-4DC7-B4A0-7CFF349C63ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C667A56F-162F-4DC7-B4A0-7CFF349C63ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C667A56F-162F-4DC7-B4A0-7CFF349C63ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+using TheCheesecakeWizard.DAL;
 
 namespace TheCheesecakeWizard.API
 {
@@ -6,6 +8,15 @@ namespace TheCheesecakeWizard.API
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            var connectionString =
+                builder.Configuration.GetConnectionString("DefaultConnection")
+                    ?? throw new InvalidOperationException("Connection string"
+                    + "'DefaultConnection' not found.");
+
+            // Add services to the container.
+            builder.Services.AddDbContext<TheCheesecakeWizardDbContext>(options =>
+                options.UseSqlServer(connectionString));
 
             // Add services to the container.
 
