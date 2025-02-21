@@ -15,7 +15,7 @@ public class TheCheesecakeWizardDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=TheCheesecakeWizard;ConnectRetryCount=0");
+        //optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=TheCheesecakeWizard;ConnectRetryCount=0");
         base.OnConfiguring(optionsBuilder);
     }
 

@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using TheCheesecakeWizard.BL.Services;
+using TheCheesecakeWizard.BL.Services.Interfaces;
 using TheCheesecakeWizard.DAL;
 
 namespace TheCheesecakeWizard.API
@@ -24,6 +26,8 @@ namespace TheCheesecakeWizard.API
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddScoped<ICheesecakeService, CheesecakeService>();
 
             var app = builder.Build();
 
