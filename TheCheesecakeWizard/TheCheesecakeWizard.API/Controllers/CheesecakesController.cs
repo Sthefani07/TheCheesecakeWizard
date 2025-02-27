@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using TheCheesecakeWizard.BL.Services.Interfaces;
 using TheCheesecakeWizard.DAL;
 using TheCheesecakeWizard.DAL.Repository.Entities;
 
@@ -14,25 +15,26 @@ namespace TheCheesecakeWizard.API.Controllers
     [ApiController]
     public class CheesecakesController : ControllerBase
     {
-        private readonly TheCheesecakeWizardDbContext _context;
+        private readonly ICheesecakeService _cheesecakeService;
+        
 
-        public CheesecakesController(TheCheesecakeWizardDbContext context)
+        public CheesecakesController(ICheesecakeService cheesecakeService)
         {
-            _context = context;
+            _cheesecakeService = cheesecakeService;
         }
 
         // GET: api/Cheesecakes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Cheesecake>>> GetCheesecakes()
+        public async Task<IEnumerable<Cheesecake>> GetCheesecakes()
         {
-            return await _context.Cheesecakes.ToListAsync();
+            return await _cheesecakeService.GetAllCheesecakesAsync();
         }
 
         // GET: api/Cheesecakes/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Cheesecake>> GetCheesecake(int id)
         {
-            var cheesecake = await _context.Cheesecakes.FindAsync(id);
+            var cheesecake = await _cheesecakeService.GetCheesecakeByIdAsync(id);
 
             if (cheesecake == null)
             {
@@ -47,30 +49,8 @@ namespace TheCheesecakeWizard.API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCheesecake(int id, Cheesecake cheesecake)
         {
-            if (id != cheesecake.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(cheesecake).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!CheesecakeExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+           await _cheesecakeService.UpdateCheesecakeAsync(id, cheesecake);
+           return NoContent();
         }
 
         // POST: api/Cheesecakes
@@ -78,9 +58,7 @@ namespace TheCheesecakeWizard.API.Controllers
         [HttpPost]
         public async Task<ActionResult<Cheesecake>> PostCheesecake(Cheesecake cheesecake)
         {
-            _context.Cheesecakes.Add(cheesecake);
-            await _context.SaveChangesAsync();
-
+            await _cheesecakeService.CreateCheesecakeAsync(cheesecake);
             return CreatedAtAction("GetCheesecake", new { id = cheesecake.Id }, cheesecake);
         }
 
@@ -88,21 +66,28 @@ namespace TheCheesecakeWizard.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCheesecake(int id)
         {
-            var cheesecake = await _context.Cheesecakes.FindAsync(id);
-            if (cheesecake == null)
+            try
+            {
+                await _cheesecakeService.DeleteCheesecakeAsync(id);
+            }
+            catch (KeyNotFoundException)
             {
                 return NotFound();
             }
-
-            _context.Cheesecakes.Remove(cheesecake);
-            await _context.SaveChangesAsync();
+            catch (DbUpdateConcurrencyException)
+            {
+                if (await _cheesecakeService.GetCheesecakeByIdAsync(id) == null)
+                {
+                    return NotFound();
+                }
+                throw;
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
 
             return NoContent();
-        }
-
-        private bool CheesecakeExists(int id)
-        {
-            return _context.Cheesecakes.Any(e => e.Id == id);
         }
     }
 }

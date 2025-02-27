@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TheCheesecakeWizard.BL\TheCheesecakeWizard.BL.csproj" />
     <ProjectReference Include="..\TheCheesecakeWizard.DAL\TheCheesecakeWizard.DAL.csproj" />
   </ItemGroup>
 
