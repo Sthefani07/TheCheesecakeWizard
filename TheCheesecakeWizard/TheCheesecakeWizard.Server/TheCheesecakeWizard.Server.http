@@ -1,6 +1,0 @@
-@TheCheesecakeWizard.Server_HostAddress = http://localhost:5194
-
-GET {{TheCheesecakeWizard.Server_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
