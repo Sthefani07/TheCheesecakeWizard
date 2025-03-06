@@ -17,8 +17,7 @@ namespace TheCheesecakeWizard.API.Controllers
     {
         private readonly ICheesecakeService _cheesecakeService;
         
-
-        public CheesecakesController(ICheesecakeService cheesecakeService)
+        public CheesecakesController(ICheesecakeService cheesecakeService) 
         {
             _cheesecakeService = cheesecakeService;
         }
