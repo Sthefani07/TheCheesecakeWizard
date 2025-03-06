@@ -3,32 +3,61 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using TheCheesecakeWizard.BL.Services.Interfaces;
+using TheCheesecakeWizard.DAL;
 using TheCheesecakeWizard.DAL.Repository.Entities;
 
 namespace TheCheesecakeWizard.BL.Services
 {
     public class IngredientService : IIngredientService
     {
-        public Task<Ingredient> CreateIngredientAsync(Ingredient ingredient)
+        private readonly TheCheesecakeWizardDbContext _context;
+
+        public IngredientService(TheCheesecakeWizardDbContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
         }
-        public Task DeleteIngredientAsync(int id)
+
+        public async Task<Ingredient> CreateIngredientAsync(Ingredient ingredient)
         {
-            throw new NotImplementedException();
+            _context.Ingredients.Add(ingredient);
+            await _context.SaveChangesAsync();
+            return ingredient;
         }
-        public Task<IEnumerable<Ingredient>> GetAllIngredientsAsync()
+        public async Task DeleteIngredientAsync(int id)
         {
-            throw new NotImplementedException();
+            var ingredient = await _context.Ingredients.FindAsync(id);
+            if (ingredient == null)
+            {
+                throw new KeyNotFoundException("Ingredient not found");
+            }
+            _context.Ingredients.Remove(ingredient);
+            await _context.SaveChangesAsync();
         }
-        public Task<Ingredient> GetIngredientByIdAsync(int id)
+        public async Task<IEnumerable<Ingredient>> GetAllIngredientsAsync()
         {
-            throw new NotImplementedException();
+            return await _context.Ingredients.ToListAsync();
         }
-        public Task<Ingredient> UpdateIngredientAsync(int id, Ingredient ingredient)
+        public async Task<Ingredient> GetIngredientByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var ingredient = await _context.Ingredients.FindAsync(id);
+            if (ingredient == null)
+            {
+                throw new KeyNotFoundException("Ingredient not found");
+            }
+            return ingredient;
+        }
+        public async Task<Ingredient> UpdateIngredientAsync(int id, Ingredient ingredient)
+        {
+            if (id != ingredient.Id)
+            {
+                throw new ArgumentException("ID mismatch");
+            }
+            _context.Entry(ingredient).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            return ingredient;
         }
     }
+
 }

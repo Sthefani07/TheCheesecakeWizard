@@ -21,7 +21,14 @@ namespace TheCheesecakeWizard.BL.Services
 
         public async Task<IEnumerable<Cheesecake>> GetAllCheesecakesAsync()
         {
-            return await _context.Cheesecakes.ToListAsync();
+            var test = await _context.Cheesecakes.Include(c => c.CheesecakeIngredients).ToListAsync();
+
+            foreach (var cheesecake in test)
+            {
+                var test2 = cheesecake.CheesecakeIngredients.ToList();
+            }
+
+            return await _context.Cheesecakes.Include(c => c.CheesecakeIngredients).ToListAsync();
         }
 
         public async Task<Cheesecake> GetCheesecakeByIdAsync(int id)
